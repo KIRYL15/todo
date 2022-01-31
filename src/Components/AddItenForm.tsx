@@ -1,11 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import '../App.css'
 
-export type InputType = {
-    jopa: (title: string) => void
+export type AddItenFormPropsType = {
+    addItem: (newTitle: string) => void
 }
 
-export const Input = (props: InputType) => {
+export const AddItenForm = (props: AddItenFormPropsType) => {
     let [title, setTitle] = useState('')
     let [textError, setTextError] = useState<string | null>(null)
 
@@ -20,9 +20,9 @@ export const Input = (props: InputType) => {
     }
 
     const addItem = () => {
-       // let trimmedTitle=title.trim()
-        if (title.trim()) {
-            props.jopa(title.trim())
+        let trimmedTitle = title.trim()
+        if (trimmedTitle !== "") {
+            props.addItem(trimmedTitle)
             setTitle('')
         } else {
             setTextError('Введите данные!')
